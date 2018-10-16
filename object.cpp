@@ -1,8 +1,8 @@
 /*
-	Author: Justin Muskopf
-	Instructor: Hoffman
-	Course: CSCE 4550, Fall 2018
-	Assignment: Project 1
+    Author: Justin Muskopf
+    Instructor: Hoffman
+    Course: CSCE 4550, Fall 2018
+    Assignment: Project 1
 */
 #include "object.h"
 
@@ -11,7 +11,7 @@
 */
 Object::Object()
 {
-	value = 0;
+    value = 0;
 }
 
 /*
@@ -20,10 +20,10 @@ Object::Object()
 */
 Object::Object(std::string _name, SecurityLevel _lvl)
 {
-	name = _name;
-	lvl = _lvl;
+    name = _name;
+    lvl = _lvl;
 
-	Object();
+    Object();
 }
 
 /*
@@ -31,7 +31,7 @@ Object::Object(std::string _name, SecurityLevel _lvl)
 */
 std::string Object::getName()
 {
-	return name;
+    return name;
 }
 
 /*
@@ -39,7 +39,7 @@ std::string Object::getName()
 */
 SecurityLevel Object::getSecurityLevel()
 {
-	return lvl;
+    return lvl;
 }
 
 /*
@@ -48,7 +48,7 @@ SecurityLevel Object::getSecurityLevel()
 */
 void Object::setValue(int _value)
 {
-	value = _value;
+    value = _value;
 }
 
 /*
@@ -56,7 +56,7 @@ void Object::setValue(int _value)
 */
 int Object::getValue()
 {
-	return value;
+    return value;
 }
 
 /*
@@ -64,5 +64,5 @@ int Object::getValue()
 */
 Object::~Object()
 {
-	
+    
 }

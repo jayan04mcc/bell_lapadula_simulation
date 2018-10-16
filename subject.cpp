@@ -1,8 +1,8 @@
 /*
-	Author: Justin Muskopf
-	Instructor: Hoffman
-	Course: CSCE 4550, Fall 2018
-	Assignment: Project 1
+    Author: Justin Muskopf
+    Instructor: Hoffman
+    Course: CSCE 4550, Fall 2018
+    Assignment: Project 1
 */
 #include "subject.h"
 
@@ -11,7 +11,7 @@
 */
 Subject::Subject()
 {
-	temp = 0;
+    temp = 0;
 }
 
 /*
@@ -21,11 +21,11 @@ Subject::Subject()
 Subject::Subject(std::string _name, SecurityLevel _lvl)
 {
     // Set name and level
-	name = _name;
-	lvl = _lvl;
+    name = _name;
+    lvl = _lvl;
 
     // Call default ctor
-	Subject();
+    Subject();
 }
 
 /*
@@ -34,7 +34,7 @@ Subject::Subject(std::string _name, SecurityLevel _lvl)
 */
 std::string Subject::getName()
 {
-	return name;
+    return name;
 }
 
 /*
@@ -43,7 +43,7 @@ std::string Subject::getName()
 */
 SecurityLevel Subject::getSecurityLevel()
 {
-	return lvl;
+    return lvl;
 }
 
 /*
@@ -52,7 +52,7 @@ SecurityLevel Subject::getSecurityLevel()
 */
 void Subject::readFromObject(Object *obj)
 {
-	temp = obj -> getValue();
+    temp = obj -> getValue();
 }
 
 /*
@@ -62,11 +62,11 @@ void Subject::readFromObject(Object *obj)
 void Subject::writeToObject(Object **obj, int value)
 {
     // De-ref obj and set value
-	Object *ret = *obj;
-	ret -> setValue(value);
+    Object *ret = *obj;
+    ret -> setValue(value);
 
     // Re-ref obj
-	obj = &ret;
+    obj = &ret;
 }
 
 /*
@@ -75,11 +75,11 @@ void Subject::writeToObject(Object **obj, int value)
 */
 int Subject::getTemp()
 {
-	return temp;
+    return temp;
 }
 
 // Default destructor
 Subject::~Subject()
 {
-	
+    
 }

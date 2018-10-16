@@ -1,8 +1,8 @@
 /*
-	Author: Justin Muskopf
-	Instructor: Hoffman
-	Course: CSCE 4550, Fall 2018
-	Assignment: Project 1
+    Author: Justin Muskopf
+    Instructor: Hoffman
+    Course: CSCE 4550, Fall 2018
+    Assignment: Project 1
 */
 #include <algorithm>
 #include <iostream>
@@ -18,36 +18,36 @@
 */
 Instruction::Instruction(std::string command)
 {
-	valid = false;      // Only true if passes all checks
-	type  = CMD_ERROR;  // Set to ERROR_TYPE for final checks
-	value = 0;          // Initial value of an instruction
+    valid = false;      // Only true if passes all checks
+    type  = CMD_ERROR;  // Set to ERROR_TYPE for final checks
+    value = 0;          // Initial value of an instruction
 
     // Copy string to this instruction var
-	instruction = command;
+    instruction = command;
 
-	// Lower the command string
-	std::string lowerCmd;
-	lowerCmd.resize(command.size());
-	std::transform(command.begin(), command.end(), lowerCmd.begin(), ::tolower);
+    // Lower the command string
+    std::string lowerCmd;
+    lowerCmd.resize(command.size());
+    std::transform(command.begin(), command.end(), lowerCmd.begin(), ::tolower);
 
-	// Get first word out of command
-	std::string cmd = lowerCmd.substr(0, lowerCmd.find(' '));
-	for (int i = 0; i < Instruction::NUM_CMD_TYPES; i++)
-	{
-		if (cmd == TypeStrings[i])
-		{
-			type = static_cast<CmdType>(i);
-		} 
-	}
+    // Get first word out of command
+    std::string cmd = lowerCmd.substr(0, lowerCmd.find(' '));
+    for (int i = 0; i < Instruction::NUM_CMD_TYPES; i++)
+    {
+        if (cmd == TypeStrings[i])
+        {
+            type = static_cast<CmdType>(i);
+        } 
+    }
 
     // Type is still ERROR, invalid instruction
-	if (type == CMD_ERROR)
-	{
-		return;
-	}
+    if (type == CMD_ERROR)
+    {
+        return;
+    }
 
     // Parse instruction
-	parseInstruction(lowerCmd);
+    parseInstruction(lowerCmd);
 }
 
 /*
@@ -57,87 +57,87 @@ Instruction::Instruction(std::string command)
 */
 void Instruction::parseInstruction(std::string cmd)
 {
-	std::vector<std::string> words; // Holds words from the cmd string
-	std::string buffer;             // The copy buffer for stream ops
-	std::stringstream stream(cmd);  // Will allow easy separation by spaces
-	while (stream >> buffer)
-	{
+    std::vector<std::string> words; // Holds words from the cmd string
+    std::string buffer;             // The copy buffer for stream ops
+    std::stringstream stream(cmd);  // Will allow easy separation by spaces
+    while (stream >> buffer)
+    {
         // Add this word to words
-		words.push_back(buffer);
-	}
+        words.push_back(buffer);
+    }
 
     // Get number of words
-	int numWords = words.size();
+    int numWords = words.size();
 
     // Logic based on type of instruction
-	switch (type)
-	{
-		case ADD_SUB:
+    switch (type)
+    {
+        case ADD_SUB:
             // Bad syntax
-			if (numWords != 3)
-			{
-				return;
-			}
+            if (numWords != 3)
+            {
+                return;
+            }
             
             // Get name and lvl, error check
-			subName = words[1];
-			lvl = getLevelFromString(words[2]);
-			if (lvl == LVL_ERROR)
-			{
-				return;
-			}
-			break;
-		case ADD_OBJ:
+            subName = words[1];
+            lvl = getLevelFromString(words[2]);
+            if (lvl == LVL_ERROR)
+            {
+                return;
+            }
+            break;
+        case ADD_OBJ:
             // Bad syntax
-			if (numWords != 3)
-			{
-				return;
-			}
+            if (numWords != 3)
+            {
+                return;
+            }
 
             // Get object name and level, error check
-			objName = words[1];
-			lvl = getLevelFromString(words[2]);
-			if (lvl == LVL_ERROR)
-			{
-				return;
-			}
-			break;
-		case READ:
+            objName = words[1];
+            lvl = getLevelFromString(words[2]);
+            if (lvl == LVL_ERROR)
+            {
+                return;
+            }
+            break;
+        case READ:
             // Bad syntax
-			if (numWords != 3)
-			{
-				return;
-			}
+            if (numWords != 3)
+            {
+                return;
+            }
             // Get subject/object names
-			subName = words[1];
-			objName = words[2];
-			break;
-		case WRITE:
+            subName = words[1];
+            objName = words[2];
+            break;
+        case WRITE:
             // Bad syntax
-			if (numWords != 4)
-			{
-				return;
-			}
+            if (numWords != 4)
+            {
+                return;
+            }
             // Get subject and object names
-			subName = words[1];
-			objName = words[2];
-			try
-			{
+            subName = words[1];
+            objName = words[2];
+            try
+            {
                 // Get value from string
-				value = stoi(words[3]);
-			}
+                value = stoi(words[3]);
+            }
             // No number found, invalid value
-			catch (const std::invalid_argument& err)
-			{
-				return;
-			}
-			break;
-		default:
-			return;
-	};
+            catch (const std::invalid_argument& err)
+            {
+                return;
+            }
+            break;
+        default:
+            return;
+    };
 
     // Valid instruction!
-	valid = true;
+    valid = true;
 }
 
 
@@ -148,20 +148,20 @@ void Instruction::parseInstruction(std::string cmd)
 */
 SecurityLevel Instruction::getLevelFromString(std::string str)
 {
-	SecurityLevel secLvl = LVL_ERROR;
+    SecurityLevel secLvl = LVL_ERROR;
 
     // Compare the known LevelStrings to the provided string
-	for (int i = 0; i < NUM_SEC_LVLS; i++)
-	{
+    for (int i = 0; i < NUM_SEC_LVLS; i++)
+    {
         // Match
-		if (LevelStrings[i] == str)
-		{
-			secLvl = static_cast<SecurityLevel>(i);
-			break;
-		}
-	}
+        if (LevelStrings[i] == str)
+        {
+            secLvl = static_cast<SecurityLevel>(i);
+            break;
+        }
+    }
 
-	return secLvl;
+    return secLvl;
 }
 
 /*
@@ -169,7 +169,7 @@ SecurityLevel Instruction::getLevelFromString(std::string str)
 */
 bool Instruction::isValid()
 {
-	return valid;
+    return valid;
 }
 
 /*
@@ -177,7 +177,7 @@ bool Instruction::isValid()
 */
 bool Instruction::isInvalid()
 {
-	return !valid;
+    return !valid;
 }
 
 
@@ -186,7 +186,7 @@ bool Instruction::isInvalid()
 */
 std::string Instruction::getSubjectName()
 {
-	return subName;
+    return subName;
 }
 
 /*
@@ -194,7 +194,7 @@ std::string Instruction::getSubjectName()
 */
 std::string Instruction::getObjectName()
 {
-	return objName;
+    return objName;
 }
 
 
@@ -203,7 +203,7 @@ std::string Instruction::getObjectName()
 */
 SecurityLevel Instruction::getSecurityLevel()
 {
-	return lvl;
+    return lvl;
 }
 
 /*
@@ -211,7 +211,7 @@ SecurityLevel Instruction::getSecurityLevel()
 */
 int Instruction::getValue()
 {
-	return value;
+    return value;
 }
 
 /*
@@ -219,7 +219,7 @@ int Instruction::getValue()
 */
 CmdType Instruction::getType()
 {
-	return type;
+    return type;
 }
 
 /*
@@ -227,7 +227,7 @@ CmdType Instruction::getType()
 */
 std::string Instruction::getInstruction()
 {
-	return instruction;
+    return instruction;
 }
 
 // Default destructor
