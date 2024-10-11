@@ -29,7 +29,7 @@ int main(int argc, char *argv[])
     std::ifstream inputFile(filename);
     if (!inputFile.good())
     {
-        std::cout << "Could not open file: " << filename << ". Terminating.\n";
+        std::cout << "No se pudo abrir el archivo: " << filename << ". terminando.\n";
         exit(1);
     }
 
@@ -46,7 +46,7 @@ int main(int argc, char *argv[])
         Instruction instruction(line);
         if (instruction.isInvalid() || !refMon.executeInstruction(instruction))
         {
-            std::cout << std::left << std::setw(16) << "Bad Instruction";
+            std::cout << std::left << std::setw(16) << "Instruccion Incorrecta";
             std::cout << ": " << line << std::endl;
         }
 
