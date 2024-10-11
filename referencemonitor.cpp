@@ -69,12 +69,12 @@ bool ReferenceMonitor::addSubject(Instruction instruction)
     result = subjects.insert(SubjectPair(subName, sub));
     if (result.second == false)
     {
-        std::cout << "Subject: '" << subName << "' Already exists!\n";
+        std::cout << "El usuario: '" << subName << "' ya existe!\n";
         return false;
     }
 
     // Output info string
-    std::cout << std::left << std::setw(DEFAULT_NAME_LEN) << "Subject Added";
+    std::cout << std::left << std::setw(DEFAULT_NAME_LEN) << "Usuario Agregado";
     std::cout << ": " << instruction.getInstruction() << "\n";
 
     return true;
@@ -99,12 +99,12 @@ bool ReferenceMonitor::addObject(Instruction instruction)
     result = objects.insert(ObjectPair(objName, obj));
     if (result.second == false)
     {
-        std::cout << "Object: '" << objName << "' Already exists!\n";
+        std::cout << "El objeto: '" << objName << "'ya existe!\n";
         return false;
     }
 
     // Output info string
-    std::cout << std::left << std::setw(DEFAULT_NAME_LEN) << "Object Added";
+    std::cout << std::left << std::setw(DEFAULT_NAME_LEN) << "Objeto Agregado";
     std::cout << ": " << instruction.getInstruction() << "\n";
 
     return true;
@@ -141,13 +141,13 @@ bool ReferenceMonitor::executeWrite(Instruction instruction)
     if (subLvl <= objLvl)
     {
         sub -> writeToObject(&obj, value);
-        std::cout << std::left << std::setw(DEFAULT_NAME_LEN) << "Access Granted";
+        std::cout << std::left << std::setw(DEFAULT_NAME_LEN) << "Acceso concedido";
         std::cout << ": " << sub -> getName() << " writes value " << value << " to " << obj -> getName() << ".\n";
     }
     // Access Denied
     else
     {
-        std::cout << std::left << std::setw(DEFAULT_NAME_LEN) << "Access Denied";
+        std::cout << std::left << std::setw(DEFAULT_NAME_LEN) << "Aceso denegado";
         std::cout << ": " << instruction.getInstruction() << "\n";
     }
 
@@ -183,13 +183,13 @@ bool ReferenceMonitor::executeRead(Instruction instruction)
     if (subLvl >= objLvl)
     {
         sub -> readFromObject(obj);
-        std::cout << std::left << std::setw(DEFAULT_NAME_LEN) << "Access Granted";
+        std::cout << std::left << std::setw(DEFAULT_NAME_LEN) << "Acceso concedido";
         std::cout << ": " << sub -> getName() << " reads " << obj -> getName() << ".\n";
     }
     // Access denied
     else
     {
-        std::cout << std::left << std::setw(DEFAULT_NAME_LEN) << "Access Denied";
+        std::cout << std::left << std::setw(DEFAULT_NAME_LEN) << "Acceso denegado";
         std::cout << ": " << instruction.getInstruction() << "\n";
     }
 
@@ -197,13 +197,10 @@ bool ReferenceMonitor::executeRead(Instruction instruction)
 }
 
 
-/*
-    Brief: Prints the current state of the reference monitor
-*/
 void ReferenceMonitor::printState()
 {
     std::cout << "-------------------------\n";
-    std::cout << std::left << std::setw(DEFAULT_NAME_LEN) << "Subject:";
+    std::cout << std::left << std::setw(DEFAULT_NAME_LEN) << "Usuario:";
     std::cout << "Temp:\n";
     std::cout << "-------------------------\n";
     for (SubjectIterator it = subjects.begin(); it != subjects.end(); it++)
@@ -213,8 +210,8 @@ void ReferenceMonitor::printState()
         std::cout << sub -> getTemp() << "\n";
     }
     std::cout << "\n";
-    std::cout << std::left << std::setw(DEFAULT_NAME_LEN) << "Object:";
-    std::cout << "Value:\n";
+    std::cout << std::left << std::setw(DEFAULT_NAME_LEN) << "Objeto:";
+    std::cout << "Valor:\n";
     std::cout << "-------------------------\n";
     for (ObjectIterator it = objects.begin(); it != objects.end(); it++)
     {
