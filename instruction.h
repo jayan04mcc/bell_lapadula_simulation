@@ -38,8 +38,8 @@ class Instruction
 
     private:
         // The strings representing SecurityLevels and Instruction types in instruction strings
-        const std::vector<std::string> LevelStrings = {"low", "medium", "high"};
-        const std::vector<std::string> TypeStrings  = {"addsub", "addobj", "read", "write"};
+        const std::vector<std::string> LevelStrings = {"bajo", "medio", "alto"};
+        const std::vector<std::string> TypeStrings  = {"add_usuario", "add_objeto", "leer", "escribir"};
 
         std::string subName;     // The subject name
         std::string objName;     // The object name
