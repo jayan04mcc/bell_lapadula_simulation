@@ -27,4 +27,4 @@ class Object
         SecurityLevel lvl;  // The object's security level
 };
 
-eendif
+#endif
